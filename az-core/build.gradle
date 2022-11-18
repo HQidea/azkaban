@@ -33,18 +33,18 @@ artifacts {
 }
 
 dependencies {
-    compile deps.jexl
-    compile deps.commonsCodec
-    compile deps.commonsLang
-    compile deps.jodaTime
-    compile deps.io
-    compile deps.jacksonCoreAsl
-    compile deps.jacksonMapperAsl
-    compile deps.metricsCore
-    compile deps.metricsJvm
-    compile deps.quartz
-    compile deps.javaxValidation
-    compile deps.hibernateValidator
-    compile deps.javaxElApi
-    compile deps.javaxEl
+    implementation deps.jexl
+    implementation deps.commonsCodec
+    implementation deps.commonsLang
+    implementation deps.jodaTime
+    implementation deps.io
+    implementation deps.jacksonCoreAsl
+    implementation deps.jacksonMapperAsl
+    implementation deps.metricsCore
+    implementation deps.metricsJvm
+    implementation deps.quartz
+    implementation deps.javaxValidation
+    implementation deps.hibernateValidator
+    implementation deps.javaxElApi
+    implementation deps.javaxEl
 }

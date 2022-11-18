@@ -15,13 +15,13 @@
  */
 
 jar {
-    baseName = 'azkaban-test'
+    archiveBaseName = 'azkaban-test'
 }
 
 dependencies {
-    compile deps.awaitility
-    compile deps.assertj
-    compile deps.mockito
-    compile deps.io
-    compile project(':azkaban-spi')
+    implementation deps.awaitility
+    implementation deps.assertj
+    implementation deps.mockito
+    implementation deps.io
+    implementation project(':azkaban-spi')
 }

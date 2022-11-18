@@ -52,26 +52,26 @@ configurations {
 }
 
 dependencies {
-    compile project(':az-core')
-    compile(project(':azkaban-common'))
-    compile(project(':az-flow-trigger-dependency-plugin'))
+    implementation project(':az-core')
+    implementation(project(':azkaban-common'))
+    implementation(project(':az-flow-trigger-dependency-plugin'))
 
-    compile deps.restliServer
-    compile deps.velocityTools
+    implementation deps.restliServer
+    implementation deps.velocityTools
 
-    testCompile(project(path: ':azkaban-common', configuration: 'testCompile'))
-    testCompile deps.collections
+    testImplementation(project(path: ':azkaban-common', configuration: 'testCompile'))
+    testImplementation deps.collections
 
     //AZ web module tests need to access classes defined in azkaban-common test module
-    testCompile project(':azkaban-common').sourceSets.test.output
+    testImplementation project(':azkaban-common').sourceSets.test.output
 
     generateRestli deps.restliGenerator
     generateRestli deps.restliTools
 
-    testCompile(project(path: ':az-flow-trigger-dependency-plugin', configuration: 'testCompile'))
-    testCompile project(':test')
-    testCompile project(path: ':azkaban-db', configuration: 'testOutput')
-    testRuntime deps.h2
+    testImplementation(project(path: ':az-flow-trigger-dependency-plugin', configuration: 'testCompile'))
+    testImplementation project(':test')
+    testImplementation project(path: ':azkaban-db', configuration: 'testOutput')
+    testRuntimeOnly  deps.h2
 }
 
 sourceSets {
@@ -174,7 +174,7 @@ distributions {
             from('src/main/resources/conf') {
                 into 'conf'
             }
-            from(configurations.runtime) {
+            from(configurations.runtimeClasspath) {
                 into 'lib'
             }
             from(jar) {

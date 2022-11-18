@@ -17,9 +17,9 @@
 apply plugin: 'distribution'
 
 dependencies {
-    compile project(':az-core')
-    compile project(":azkaban-common")
-    compile project(":azkaban-web-server")
+    implementation project(':az-core')
+    implementation project(":azkaban-common")
+    implementation project(":azkaban-web-server")
 }
 
 distributions {

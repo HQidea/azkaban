@@ -17,26 +17,26 @@
 apply plugin: 'distribution'
 
 dependencies {
-    compile(project(':az-core'))
-    compile(project(':azkaban-common'))
-    compile(project(':azkaban-hadoop-security-plugin'))
-    compile(project(':az-hadoop-jobtype-plugin')) {
+    implementation(project(':az-core'))
+    implementation(project(':azkaban-common'))
+    implementation(project(':azkaban-hadoop-security-plugin'))
+    implementation(project(':az-hadoop-jobtype-plugin')) {
         transitive = false
     }
 
-    compile deps.hadoopCommon
-    compile deps.guava
-    compile deps.jsr305
-    compile deps.failsafe
+    implementation deps.hadoopCommon
+    implementation deps.guava
+    implementation deps.jsr305
+    implementation deps.failsafe
 
-    testCompile(project(path: ':azkaban-common', configuration: 'testCompile'))
-    testCompile(project(':azkaban-common').sourceSets.test.output)
+    testImplementation(project(path: ':azkaban-common', configuration: 'testCompile'))
+    testImplementation(project(':azkaban-common').sourceSets.test.output)
 
-    testCompile deps.h2
-    testCompile deps.hadoopAnnotations
-    testCompile deps.hadoopAuth
-    testCompile deps.hadoopHdfs
-    testCompile deps.systemRules
+    testImplementation deps.h2
+    testImplementation deps.hadoopAnnotations
+    testImplementation deps.hadoopAuth
+    testImplementation deps.hadoopHdfs
+    testImplementation deps.systemRules
 }
 
 distributions {
@@ -57,7 +57,7 @@ distributions {
                 into 'bin'
                 fileMode = 0755
             }
-            from(configurations.runtime) {
+            from(configurations.runtimeClasspath) {
                 into 'lib'
             }
             from(jar) {

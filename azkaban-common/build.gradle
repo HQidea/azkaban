@@ -14,49 +14,49 @@
  * the License.
  */
 dependencies {
-    compile project(':az-core')
-    compile project(':azkaban-spi')
-    compile project(':azkaban-db')
-    compile project(':cached-http-filesystem')
+    implementation project(':az-core')
+    implementation project(':azkaban-spi')
+    implementation project(':azkaban-db')
+    implementation project(':cached-http-filesystem')
 
-    compile deps.collections
-    compile deps.dbcp2
-    compile deps.dbutils
-    compile deps.fileupload
-    compile deps.guava
-    compile deps.gson
+    implementation deps.collections
+    implementation deps.dbcp2
+    implementation deps.dbutils
+    implementation deps.fileupload
+    implementation deps.guava
+    implementation deps.gson
     compileOnly deps.hadoopAnnotations
     compileOnly deps.hadoopAuth
     compileOnly deps.hadoopCommon
     compileOnly deps.hadoopHdfs
-    compile deps.hadoopMRClientCommon
-    compile deps.hadoopMRClientCore
-    compile deps.httpclient
-    compile deps.jetty
-    compile deps.jettyUtil
-    compile deps.jopt
-    compile deps.k8sClient
-    compile (deps.k8sClientFluent) {
+    implementation deps.hadoopMRClientCommon
+    implementation deps.hadoopMRClientCore
+    implementation deps.httpclient
+    implementation deps.jetty
+    implementation deps.jettyUtil
+    implementation deps.jopt
+    implementation deps.k8sClient
+    implementation (deps.k8sClientFluent) {
         exclude module: 'builder-annotations'
     }
-    compile deps.mail
-    compile deps.math3
-    compile deps.metricsCore
-    compile deps.metricsJvm
-    compile deps.mysqlConnector
-    compile deps.snakeyaml
-    compile deps.velocity
-    compile deps.kafkaLog4jAppender
+    implementation deps.mail
+    implementation deps.math3
+    implementation deps.metricsCore
+    implementation deps.metricsJvm
+    implementation deps.mysqlConnector
+    implementation deps.snakeyaml
+    implementation deps.velocity
+    implementation deps.kafkaLog4jAppender
 
-    testRuntime deps.h2
+    testRuntimeOnly  deps.h2
 
-    testCompile deps.hadoopAnnotations
-    testCompile deps.hadoopAuth
-    testCompile deps.hadoopCommon
-    testCompile deps.hadoopHdfs
-    testCompile project(':test')
-    testCompile project(path: ':azkaban-db', configuration: 'testOutput')
-    testCompile deps.commonsCompress
+    testImplementation deps.hadoopAnnotations
+    testImplementation deps.hadoopAuth
+    testImplementation deps.hadoopCommon
+    testImplementation deps.hadoopHdfs
+    testImplementation project(':test')
+    testImplementation project(path: ':azkaban-db', configuration: 'testOutput')
+    testImplementation deps.commonsCompress
 }
 
 tasks.withType(JavaCompile) {

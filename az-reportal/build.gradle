@@ -18,11 +18,11 @@ apply plugin: 'distribution'
 
 
 dependencies {
-    compile project(':az-core')
+    implementation project(':az-core')
     compileOnly project(":azkaban-web-server")
     compileOnly project(":azkaban-common")
     compileOnly project(":azkaban-hadoop-security-plugin")
-    compile project(':az-crypto')
+    implementation project(':az-crypto')
 
     compileOnly deps.bcprov
     compileOnly deps.hadoopCommon
@@ -54,7 +54,7 @@ distributions {
 distributions {
     main {
         contents {
-            from(configurations.runtime) {
+            from(configurations.runtimeClasspath) {
                 into 'lib'
             }
             from(jar) {

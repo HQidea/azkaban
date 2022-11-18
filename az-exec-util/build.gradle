@@ -13,7 +13,9 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-apply plugin: 'c'
+plugins {
+    id 'cpp-application'
+}
 model {
     components {
         main(NativeExecutableSpec) {

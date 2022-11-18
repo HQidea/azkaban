@@ -3,11 +3,11 @@ description = 'A test server which runs the web server and an executor in one pr
 apply plugin: 'distribution'
 
 dependencies {
-    compile(project(':azkaban-web-server'))
-    compile(project(':azkaban-exec-server'))
+    implementation(project(':azkaban-web-server'))
+    implementation(project(':azkaban-exec-server'))
 
-    runtime deps.h2
-    runtime deps.hadoopCommon
+    runtimeOnly deps.h2
+    runtimeOnly deps.hadoopCommon
 }
 
 installDist.dependsOn ':azkaban-web-server:installDist'
@@ -31,7 +31,7 @@ distributions {
             from('src/main/resources/commonprivate.properties') {
                 into 'plugins/jobtypes'
             }
-            from(configurations.runtime) {
+            from(configurations.runtimeClasspath) {
                 into 'lib'
             }
             from(jar) {

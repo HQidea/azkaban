@@ -22,32 +22,23 @@ buildscript {
   }
   dependencies {
     classpath 'com.cinnober.gradle:semver-git:2.2.3'
-    classpath 'net.ltgt.gradle:gradle-errorprone-plugin:0.0.14'
+    classpath 'net.ltgt.gradle:gradle-errorprone-plugin:3.0.1'
   }
 }
 
 plugins {
-  id 'com.gradle.build-scan' version '3.2'
   id 'com.github.kt3k.coveralls' version '2.6.3'
   id 'jacoco'
   id 'idea'
 }
 
-// https://docs.gradle.com/enterprise/gradle-plugin/#connecting_to_scans_gradle_com
-gradleEnterprise {
-    buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-    }
-}
-
 apply plugin: 'com.cinnober.gradle.semver-git'
 
-apply plugin: 'compare-gradle-builds'
-
-compareGradleBuilds {
-  targetBuild.gradleVersion = "4.0"
-}
+//apply plugin: 'compare-gradle-builds'
+//
+//compareGradleBuilds {
+//  targetBuild.gradleVersion = "4.0"
+//}
 
 allprojects {
   apply plugin: 'jacoco'
@@ -183,19 +174,19 @@ subprojects {
     }
 
     dependencies {
-      compile deps.log4j
-      compile deps.guice
-      compile deps.slf4j
-      runtime deps.slf4jLog4j
+      implementation deps.log4j
+      implementation deps.guice
+      implementation deps.slf4j
+      runtimeOnly deps.slf4jLog4j
 
-      testCompile deps.assertj
-      testCompile deps.junit
-      testCompile deps.mockito
-      testCompile deps.powermock
-      testCompile deps.powermockmodulejunit4
-      testCompile deps.jsonassert
-      testCompile deps.awaitility
-      testCompile deps.springTest
+      testImplementation deps.assertj
+      testImplementation deps.junit
+      testImplementation deps.mockito
+      testImplementation deps.powermock
+      testImplementation deps.powermockmodulejunit4
+      testImplementation deps.jsonassert
+      testImplementation deps.awaitility
+      testImplementation deps.springTest
     }
 
     test {
@@ -212,7 +203,7 @@ subprojects {
   plugins.withType(DistributionPlugin) {
     distTar {
       compression = Compression.GZIP
-      extension = 'tar.gz'
+      archiveExtension = 'tar.gz'
     }
   }
 
@@ -274,9 +265,9 @@ task jacocoAggregateReport(type: JacocoReport, group: 'Coverage reports') {
   // JacocoReport-type task requires users to specify which classes to be covered
   // See details in
   // https://docs.gradle.org/current/dsl/org.gradle.testing.jacoco.tasks.JacocoReport.html
-  sourceDirectories = files(publishedProjects.sourceSets.main.allSource.srcDirs)
-  classDirectories = files(publishedProjects.sourceSets.main.output)
-  executionData = files(publishedProjects.jacocoTestReport.executionData)
+  sourceDirectories.from = publishedProjects.sourceSets.main.allSource.srcDirs
+  classDirectories.from = publishedProjects.sourceSets.main.output
+  executionData.from = publishedProjects.jacocoTestReport.executionData
 
   doFirst {
     executionData = files(executionData.findAll { it.exists() })
